@@ -1,1346 +1,514 @@
-{% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <title>LRMS | Landslide Risk Monitoring</title>
 
-    <title>Landslide Prediction & Early Warning System</title>
-
-
-    <!-- CSS -->
-
-    <link rel="stylesheet"
-          href="{% static 'css/style.css' %}">
-
-
-    <!-- Google Fonts -->
-
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
-
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-          rel="stylesheet">
-
-
-    <!-- Leaflet CSS -->
-
-    <link rel="stylesheet"
-          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-
+    <!-- IMPORTANT -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
-
 
 <body>
 
+    <div class="app">
 
-<div class="app-shell">
+        <!-- ================= HEADER ================= -->
 
+        <header class="app-header">
 
-    <!-- ===================================== -->
-    <!-- HOME SCREEN -->
-    <!-- ===================================== -->
+            <div class="header-left">
 
-    <section class="screen active"
-             id="home">
+                <button class="menu-btn" id="menuBtn">
+                    ☰
+                </button>
 
+                <div class="brand">
+                    <h1>LRMS</h1>
+                    <span>Landslide Risk Monitoring</span>
+                </div>
 
-        <!-- TOP BAR -->
-
-        <header class="topbar">
-
-            <button class="icon-btn">
-                ☰
-            </button>
-
-
-            <div class="top-title">
-                <h2>
-                    Landslide Prediction &
-                    <br>
-                    Early Warning System
-                </h2>
-
-                <p>
-                    Stay Aware, Stay Safe
-                </p>
             </div>
 
-
-            <button class="icon-btn">
-                ♧
+            <button class="notification-btn" id="notificationBtn">
+                🔔
+                <span class="notification-dot"></span>
             </button>
 
         </header>
 
 
+        <!-- ================= MAIN ================= -->
 
-        <!-- LOCATION SEARCH -->
+        <main class="main-content">
 
-        <div class="location-box">
+            <!-- LOCATION -->
 
-            <span class="location-icon">
-                📍
-            </span>
+            <section class="location-section">
 
-            <span>
-                Guwahati, Assam
-            </span>
+                <div>
+                    <p class="section-label">CURRENT LOCATION</p>
 
-        </div>
+                    <h2>Guwahati, Assam</h2>
 
+                    <div class="location-status">
+                        <span></span>
+                        Location monitoring active
+                    </div>
+                </div>
 
+                <button class="location-btn">
+                    📍
+                </button>
 
-        <!-- RISK CARD -->
-
-        <div class="risk-card">
-
-            <div class="risk-info">
-
-                <p class="small-title">
-                    Landslide Risk
-                </p>
+            </section>
 
 
-                <h1>
-                    <span id="riskScore">
-                        82
-                    </span>
-                    <small>%</small>
-                </h1>
+            <!-- ================= RISK CARD ================= -->
+
+            <section class="risk-card">
+
+                <div class="risk-information">
+
+                    <p class="card-label">
+                        LANDSLIDE RISK
+                    </p>
+
+                    <div class="risk-number">
+                        82<span>%</span>
+                    </div>
+
+                    <h3>
+                        VERY HIGH RISK
+                    </h3>
+
+                    <p class="risk-warning">
+                        ⚠️ Increased landslide probability detected.
+                    </p>
+
+                    <p class="updated">
+                        Last updated: Today, 10:30 AM
+                    </p>
+
+                </div>
 
 
-                <h3 class="high-risk-text">
-                    High Risk
-                </h3>
+                <!-- RISK CIRCLE -->
+
+                <div class="risk-circle">
+
+                    <div class="circle-inner">
+                        <strong>82%</strong>
+                        <span>Risk</span>
+                    </div>
+
+                </div>
+
+            </section>
 
 
-                <p class="update-text">
-                    Last Updated: Today, 10:30 AM
-                </p>
+            <!-- ================= RISK OVERVIEW ================= -->
 
-            </div>
+            <section class="section">
 
+                <div class="section-heading">
 
-            <!-- GAUGE -->
-
-            <div class="gauge-container">
-
-                <div class="gauge">
-
-                    <div class="gauge-cover">
-
-                        <span>
-                            🌧️
+                    <div>
+                        <span class="small-title">
+                            RISK LEVELS
                         </span>
+
+                        <h2>Risk Overview</h2>
+                    </div>
+
+                    <button
+                        class="view-map-btn"
+                        id="mapBtn"
+                    >
+                        View Map →
+                    </button>
+
+                </div>
+
+
+                <div class="risk-levels">
+
+                    <button
+                        class="risk-level low"
+                        data-risk="low"
+                    >
+                        <strong>Low</strong>
+                        <span>0–20%</span>
+                    </button>
+
+                    <button
+                        class="risk-level moderate"
+                        data-risk="moderate"
+                    >
+                        <strong>Moderate</strong>
+                        <span>21–40%</span>
+                    </button>
+
+                    <button
+                        class="risk-level high"
+                        data-risk="high"
+                    >
+                        <strong>High</strong>
+                        <span>41–60%</span>
+                    </button>
+
+                    <button
+                        class="risk-level very-high active"
+                        data-risk="very-high"
+                    >
+                        <strong>Very High</strong>
+                        <span>61–100%</span>
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= ENVIRONMENT ================= -->
+
+            <section class="section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="small-title">
+                            LIVE DATA
+                        </span>
+
+                        <h2>Environmental Conditions</h2>
+                    </div>
+
+                    <span class="live-status">
+                        ● LIVE
+                    </span>
+
+                </div>
+
+
+                <div class="environment-grid">
+
+                    <div class="environment-card">
+
+                        <div class="environment-icon">
+                            🌧️
+                        </div>
+
+                        <div>
+                            <span>Rainfall</span>
+                            <strong>42 mm</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="environment-card">
+
+                        <div class="environment-icon">
+                            💧
+                        </div>
+
+                        <div>
+                            <span>Soil Moisture</span>
+                            <strong>78%</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="environment-card">
+
+                        <div class="environment-icon">
+                            ⛰️
+                        </div>
+
+                        <div>
+                            <span>Slope</span>
+                            <strong>34°</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="environment-card">
+
+                        <div class="environment-icon">
+                            🌡️
+                        </div>
+
+                        <div>
+                            <span>Temperature</span>
+                            <strong>24°C</strong>
+                        </div>
 
                     </div>
 
                 </div>
 
-            </div>
+            </section>
 
-        </div>
 
+            <!-- ================= QUICK ACTIONS ================= -->
 
+            <section class="section">
 
-        <!-- RISK OVERVIEW -->
+                <div class="section-heading">
 
-        <h3 class="section-title">
-            Risk Overview
-        </h3>
+                    <div>
+                        <span class="small-title">
+                            TOOLS
+                        </span>
 
-
-        <div class="risk-overview">
-
-
-            <div class="risk-box low">
-
-                <h4>
-                    Low
-                </h4>
-
-                <p>
-                    0–20%
-                </p>
-
-            </div>
-
-
-            <div class="risk-box moderate">
-
-                <h4>
-                    Moderate
-                </h4>
-
-                <p>
-                    21–40%
-                </p>
-
-            </div>
-
-
-            <div class="risk-box high">
-
-                <h4>
-                    High
-                </h4>
-
-                <p>
-                    41–60%
-                </p>
-
-            </div>
-
-
-            <div class="risk-box very-high">
-
-                <h4>
-                    Very High
-                </h4>
-
-                <p>
-                    61–100%
-                </p>
-
-            </div>
-
-
-        </div>
-
-
-
-        <!-- QUICK ACTIONS -->
-
-        <h3 class="section-title">
-            Quick Actions
-        </h3>
-
-
-        <div class="quick-actions">
-
-
-            <button class="quick-btn"
-                    onclick="showScreen('map')">
-
-                <span>
-                    📍
-                </span>
-
-                <p>
-                    Check on Map
-                </p>
-
-            </button>
-
-
-
-            <button class="quick-btn"
-                    onclick="showScreen('photo')">
-
-                <span>
-                    📷
-                </span>
-
-                <p>
-                    Send Photo
-                </p>
-
-            </button>
-
-
-
-            <button class="quick-btn">
-
-                <span>
-                    🌦️
-                </span>
-
-                <p>
-                    Weather Info
-                </p>
-
-            </button>
-
-
-
-            <button class="quick-btn"
-                    onclick="showScreen('alerts')">
-
-                <span>
-                    🔔
-                </span>
-
-                <p>
-                    Alerts
-                </p>
-
-            </button>
-
-
-        </div>
-
-
-    </section>
-
-
-
-
-
-    <!-- ===================================== -->
-    <!-- MAP SCREEN -->
-    <!-- ===================================== -->
-
-    <section class="screen"
-             id="map">
-
-
-        <header class="map-header">
-
-            <button class="icon-btn"
-                    onclick="showScreen('home')">
-
-                ←
-
-            </button>
-
-
-            <h2>
-                Risk Map
-            </h2>
-
-
-            <button class="icon-btn">
-                ⚱
-            </button>
-
-        </header>
-
-
-
-        <!-- MAP FILTERS -->
-
-        <div class="map-filters">
-
-            <button class="filter active-filter">
-                All Risk
-            </button>
-
-            <button class="filter">
-                Low
-            </button>
-
-            <button class="filter">
-                Moderate
-            </button>
-
-            <button class="filter">
-                High
-            </button>
-
-            <button class="filter">
-                Very High
-            </button>
-
-        </div>
-
-
-
-        <!-- REAL MAP -->
-
-        <div id="realMap"></div>
-
-
-
-        <!-- MAP LEGEND -->
-
-        <div class="map-legend">
-
-            <span>
-                🟢 Low
-            </span>
-
-            <span>
-                🟡 Moderate
-            </span>
-
-            <span>
-                🟠 High
-            </span>
-
-            <span>
-                🔴 Very High
-            </span>
-
-        </div>
-
-
-
-        <!-- MAP INFORMATION CARD -->
-
-        <div class="map-info-card">
-
-            <div>
-
-                <h3>
-                    Guwahati, Assam
-                </h3>
-
-                <p>
-                    Risk Score
-                </p>
-
-                <h1>
-                    82%
-                </h1>
-
-                <strong>
-                    High Risk
-                </strong>
-
-            </div>
-
-
-            <div class="map-stats">
-
-                <div>
-
-                    <span>
-                        Rainfall (24h)
-                    </span>
-
-                    <strong>
-                        180 mm
-                    </strong>
+                        <h2>Quick Actions</h2>
+                    </div>
 
                 </div>
 
 
-                <div>
+                <div class="action-grid">
 
-                    <span>
-                        Humidity
-                    </span>
+                    <button
+                        class="action-card"
+                        id="riskMapAction"
+                    >
 
-                    <strong>
-                        85%
-                    </strong>
+                        <div class="action-icon blue">
+                            🗺️
+                        </div>
+
+                        <strong>Risk Map</strong>
+
+                        <span>
+                            Explore risk zones
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="action-card"
+                        id="photoAction"
+                    >
+
+                        <div class="action-icon purple">
+                            📷
+                        </div>
+
+                        <strong>Photo Analysis</strong>
+
+                        <span>
+                            Analyze a location
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="action-card"
+                        id="alertsAction"
+                    >
+
+                        <div class="action-icon orange">
+                            🚨
+                        </div>
+
+                        <strong>Alerts</strong>
+
+                        <span>
+                            View warnings
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="action-card"
+                        id="routeAction"
+                    >
+
+                        <div class="action-icon green">
+                            🛣️
+                        </div>
+
+                        <strong>Route Risk</strong>
+
+                        <span>
+                            Check your route
+                        </span>
+
+                    </button>
 
                 </div>
 
+            </section>
 
-                <div>
 
-                    <span>
-                        Slope
-                    </span>
+            <!-- ================= SAFETY ================= -->
 
-                    <strong>
-                        32°
-                    </strong>
+            <section class="safety-card">
 
+                <div class="safety-icon">
+                    🛡️
                 </div>
 
-            </div>
-
-        </div>
-
-
-    </section>
-
-
-
-
-
-    <!-- ===================================== -->
-    <!-- LOCATION DETAILS -->
-    <!-- ===================================== -->
-
-    <section class="screen"
-             id="details">
-
-
-        <header class="map-header">
-
-            <button class="icon-btn"
-                    onclick="showScreen('map')">
-
-                ←
-
-            </button>
-
-
-            <h2>
-                Location Details
-            </h2>
-
-
-            <button class="icon-btn">
-                ⤴
-            </button>
-
-        </header>
-
-
-
-        <!-- LOCATION IMAGE -->
-
-        <div class="location-image">
-
-            <img src="https://images.unsplash.com/photo-1464278533981-50106e6176b1"
-                 alt="Mountain">
-
-            <span class="high-risk-badge">
-                High Risk Area
-            </span>
-
-        </div>
-
-
-
-        <!-- DETAILS CARD -->
-
-        <div class="details-card">
-
-
-            <h2>
-                Guwahati, Assam
-            </h2>
-
-
-            <div class="details-risk">
-
                 <div>
+
+                    <strong>Stay Alert</strong>
 
                     <p>
-                        Risk Score
+                        Follow official warnings and avoid high-risk areas during heavy rainfall.
                     </p>
 
-                    <h1>
-                        82%
-                    </h1>
-
-                    <h3>
-                        High Risk
-                    </h3>
-
                 </div>
 
+            </section>
 
-                <div class="mini-gauge">
+        </main>
 
-                    🌧️
 
-                </div>
+        <!-- ================= BOTTOM NAVIGATION ================= -->
 
-            </div>
+        <nav class="bottom-nav">
 
-
-            <p class="update-text">
-                Updated: Today, 10:30 AM
-            </p>
-
-
-            <hr>
-
-
-            <h3>
-                Environmental Factors
-            </h3>
-
-
-            <div class="factor-row">
-
-                <span>
-                    💧 Rainfall (24h)
-                </span>
-
-                <strong>
-                    180 mm
-                </strong>
-
-            </div>
-
-
-            <div class="factor-row">
-
-                <span>
-                    💧 Rainfall (7d)
-                </span>
-
-                <strong>
-                    430 mm
-                </strong>
-
-            </div>
-
-
-            <div class="factor-row">
-
-                <span>
-                    💧 Humidity
-                </span>
-
-                <strong>
-                    85%
-                </strong>
-
-            </div>
-
-
-            <div class="factor-row">
-
-                <span>
-                    🌡 Temperature
-                </span>
-
-                <strong>
-                    28°C
-                </strong>
-
-            </div>
-
-
-            <div class="factor-row">
-
-                <span>
-                    📐 Slope
-                </span>
-
-                <strong>
-                    32°
-                </strong>
-
-            </div>
-
-
-            <div class="factor-row">
-
-                <span>
-                    ⛰ Elevation
-                </span>
-
-                <strong>
-                    95 m
-                </strong>
-
-            </div>
-
-
-
-            <!-- PROBABILITY -->
-
-            <div class="probability-section">
-
-                <h3>
-                    Risk Probability (Next 24h)
-                </h3>
-
-
-                <div class="probability-bar">
-
-                    <div class="probability-fill"></div>
-
-                </div>
-
-
-                <div class="probability-labels">
-
-                    <span>
-                        0%
-                    </span>
-
-                    <span>
-                        50%
-                    </span>
-
-                    <span>
-                        100%
-                    </span>
-
-                </div>
-
-
-            </div>
-
-
-        </div>
-
-
-    </section>
-
-
-
-
-
-    <!-- ===================================== -->
-    <!-- PHOTO ANALYSIS -->
-    <!-- ===================================== -->
-
-    <section class="screen"
-             id="photo">
-
-
-        <header class="map-header">
-
-            <button class="icon-btn"
-                    onclick="showScreen('home')">
-
-                ←
-
-            </button>
-
-
-            <h2>
-                Photo Analysis
-            </h2>
-
-
-            <div></div>
-
-        </header>
-
-
-
-        <!-- UPLOAD AREA -->
-
-        <div class="upload-box">
-
-
-            <div class="upload-icon">
-
-                ☁️
-
-            </div>
-
-
-            <h3>
-                Upload or Capture
-                <br>
-                an Image
-            </h3>
-
-
-            <p>
-                JPG, PNG (Max. 10MB)
-            </p>
-
-
-            <input type="file"
-                   id="imageUpload"
-                   accept="image/*"
-                   hidden>
-
-
-            <button class="capture-btn"
-                    onclick="document.getElementById('imageUpload').click()">
-
-                Capture Photo
-
-            </button>
-
-
-        </div>
-
-
-
-        <!-- RECENT ANALYSIS -->
-
-        <h3 class="section-title">
-            Recent Analysis
-        </h3>
-
-
-        <div class="recent-analysis">
-
-
-            <div class="analysis-item">
-
-                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b"
-                     alt="Hill">
-
-                <div>
-
-                    <h4>
-                        Hill Area - 1
-                    </h4>
-
-                    <p>
-                        Today, 9:15 AM
-                    </p>
-
-                    <strong class="danger">
-                        Risk: High
-                    </strong>
-
-                </div>
-
-            </div>
-
-
-
-            <div class="analysis-item">
-
-                <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7"
-                     alt="Road">
-
-                <div>
-
-                    <h4>
-                        Roadside Slope
-                    </h4>
-
-                    <p>
-                        Yesterday, 4:30 PM
-                    </p>
-
-                    <strong class="warning">
-                        Risk: Moderate
-                    </strong>
-
-                </div>
-
-            </div>
-
-
-
-            <div class="analysis-item">
-
-                <img src="https://images.unsplash.com/photo-1464278533981-50106e6176b1"
-                     alt="Mountain">
-
-                <div>
-
-                    <h4>
-                        Mountain Area
-                    </h4>
-
-                    <p>
-                        12 May 2024, 11:20 AM
-                    </p>
-
-                    <strong class="safe">
-                        Risk: Low
-                    </strong>
-
-                </div>
-
-            </div>
-
-
-        </div>
-
-
-    </section>
-
-
-
-
-
-    <!-- ===================================== -->
-    <!-- AI ANALYSIS RESULT -->
-    <!-- ===================================== -->
-
-    <section class="screen"
-             id="result">
-
-
-        <header class="map-header">
-
-            <button class="icon-btn"
-                    onclick="showScreen('photo')">
-
-                ←
-
-            </button>
-
-
-            <h2>
-                Analysis Result
-            </h2>
-
-
-            <div></div>
-
-        </header>
-
-
-
-        <!-- IMAGE RESULT -->
-
-        <div class="result-image">
-
-            <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7"
-                 alt="Landslide">
-
-            <div class="detection-box">
-
-                High Instability Detected
-
-            </div>
-
-        </div>
-
-
-
-        <!-- INSTABILITY CARD -->
-
-        <div class="instability-card">
-
-            <div>
-
-                <p>
-                    Instability Score
-                </p>
-
-                <h1>
-                    76%
-                </h1>
-
-                <h3>
-                    High Instability
-                </h3>
-
-            </div>
-
-
-            <div class="mini-gauge">
-
-                ⚠️
-
-            </div>
-
-        </div>
-
-
-
-        <!-- DETECTED INDICATORS -->
-
-        <div class="indicators-card">
-
-            <h3>
-                Detected Indicators
-            </h3>
-
-
-            <div class="indicator">
-
-                ⚠️ Soil Cracks Detected
-
-            </div>
-
-
-            <div class="indicator">
-
-                ⚠️ Slope Disturbance
-
-            </div>
-
-
-            <div class="indicator">
-
-                ⚠️ Erosion Signs
-
-            </div>
-
-
-            <div class="indicator">
-
-                ⚠️ Loose Rocks Detected
-
-            </div>
-
-
-        </div>
-
-
-
-        <div class="ai-note">
-
-            <strong>
-                ⓘ Note
-            </strong>
-
-            <p>
-                This analysis is based on AI prediction.
-                Please consult local authorities for confirmation.
-            </p>
-
-        </div>
-
-
-    </section>
-
-
-
-
-
-    <!-- ===================================== -->
-    <!-- ALERTS -->
-    <!-- ===================================== -->
-
-    <section class="screen"
-             id="alerts">
-
-
-        <header class="map-header">
-
-            <button class="icon-btn"
-                    onclick="showScreen('home')">
-
-                ←
-
-            </button>
-
-
-            <h2>
-                Alerts
-            </h2>
-
-
-            <div></div>
-
-        </header>
-
-
-
-        <!-- ALERT FILTERS -->
-
-        <div class="alert-filters">
-
-            <button class="filter active-filter">
-                All
-            </button>
-
-            <button class="filter">
-                High Risk
-            </button>
-
-            <button class="filter">
-                Moderate
-            </button>
-
-            <button class="filter">
-                Information
-            </button>
-
-        </div>
-
-
-
-        <!-- ALERT LIST -->
-
-        <div class="alerts-list">
-
-
-            <div class="alert-item">
-
-                <div class="alert-icon danger-bg">
-                    ⚠
-                </div>
-
-
-                <div>
-
-                    <h3>
-                        High Risk Alert
-                    </h3>
-
-                    <p>
-                        Heavy rainfall is expected in your area
-                        in next 24 hours.
-                    </p>
-
-                    <small>
-                        Today, 10:30 AM
-                    </small>
-
-                </div>
-
-            </div>
-
-
-
-            <div class="alert-item">
-
-                <div class="alert-icon warning-bg">
-                    ⚠
-                </div>
-
-
-                <div>
-
-                    <h3>
-                        Moderate Risk Alert
-                    </h3>
-
-                    <p>
-                        Soil moisture levels are high.
-                        Be cautious.
-                    </p>
-
-                    <small>
-                        Yesterday, 8:15 AM
-                    </small>
-
-                </div>
-
-            </div>
-
-
-
-            <div class="alert-item">
-
-                <div class="alert-icon info-bg">
-                    i
-                </div>
-
-
-                <div>
-
-                    <h3>
-                        Weather Update
-                    </h3>
-
-                    <p>
-                        Light to moderate rainfall expected
-                        in next 48 hours.
-                    </p>
-
-                    <small>
-                        Yesterday, 6:00 PM
-                    </small>
-
-                </div>
-
-            </div>
-
-
-        </div>
-
-
-    </section>
-
-
-
-
-
-    <!-- ===================================== -->
-    <!-- PROFILE -->
-    <!-- ===================================== -->
-
-    <section class="screen"
-             id="profile">
-
-
-        <header class="map-header">
-
-            <button class="icon-btn"
-                    onclick="showScreen('home')">
-
-                ←
-
-            </button>
-
-
-            <h2>
-                Profile
-            </h2>
-
-
-            <div></div>
-
-        </header>
-
-
-
-        <div class="profile-header">
-
-            <div class="profile-avatar">
-
-                👤
-
-            </div>
-
-
-            <div>
-
-                <h3>
-                    User Name
-                </h3>
-
-                <p>
-                    user@email.com
-                </p>
-
-            </div>
-
-        </div>
-
-
-
-        <div class="profile-menu">
-
-
-            <div class="profile-item">
-
-                <span>
-                    📍 Saved Locations
-                </span>
-
-                <span>
-                    ›
-                </span>
-
-            </div>
-
-
-            <div class="profile-item">
-
-                <span>
-                    🔔 Alert Settings
-                </span>
-
-                <span>
-                    ›
-                </span>
-
-            </div>
-
-
-            <div class="profile-item">
-
-                <span>
-                    ❔ Help & Support
-                </span>
-
-                <span>
-                    ›
-                </span>
-
-            </div>
-
-
-            <div class="profile-item">
-
-                <span>
-                    ⓘ About App
-                </span>
-
-                <span>
-                    ›
-                </span>
-
-            </div>
-
-
-        </div>
-
-
-    </section>
-
-
-
-
-
-    <!-- ===================================== -->
-    <!-- BOTTOM NAVIGATION -->
-    <!-- ===================================== -->
-
-    <nav class="bottom-nav">
-
-
-        <button onclick="showScreen('home')">
-
-            <span>
-                ⌂
-            </span>
-
-            <small>
+            <button
+                class="nav-item active"
+                data-page="home"
+            >
+                <span>⌂</span>
                 Home
-            </small>
-
-        </button>
+            </button>
 
 
-
-        <button onclick="showScreen('map')">
-
-            <span>
-                🗺
-            </span>
-
-            <small>
+            <button
+                class="nav-item"
+                data-page="map"
+                id="bottomMapBtn"
+            >
+                <span>🗺️</span>
                 Map
-            </small>
-
-        </button>
+            </button>
 
 
-
-        <button class="main-nav-btn"
-                onclick="showScreen('photo')">
-
-            📷
-
-        </button>
-
+            <button
+                class="camera-button"
+                id="cameraBtn"
+            >
+                📷
+            </button>
 
 
-        <button onclick="showScreen('alerts')">
-
-            <span>
-                ♧
-            </span>
-
-            <small>
+            <button
+                class="nav-item"
+                data-page="alerts"
+            >
+                <span>🔔</span>
                 Alerts
-            </small>
-
-        </button>
+            </button>
 
 
-
-        <button onclick="showScreen('profile')">
-
-            <span>
-                ♙
-            </span>
-
-            <small>
+            <button
+                class="nav-item"
+                data-page="profile"
+            >
+                <span>♙</span>
                 Profile
-            </small>
+            </button>
 
-        </button>
-
-
-    </nav>
+        </nav>
 
 
-</div>
+        <!-- ================= MAP SCREEN ================= -->
+
+        <section
+            class="map-screen"
+            id="mapScreen"
+        >
+
+            <div class="map-header">
+
+                <button id="mapBackBtn">
+                    ←
+                </button>
+
+                <div>
+                    <span>LRMS</span>
+                    <h2>Risk Map</h2>
+                </div>
+
+            </div>
 
 
+            <div class="map-placeholder">
 
-<!-- ===================================== -->
-<!-- LEAFLET JS -->
-<!-- ===================================== -->
+                <div class="map-content">
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+                    <div class="map-pin">
+                        📍
+                    </div>
+
+                    <h2>Guwahati Risk Map</h2>
+
+                    <p>
+                        Interactive landslide risk zones
+                    </p>
+
+                </div>
+
+            </div>
 
 
-<!-- YOUR JAVASCRIPT -->
+            <div class="map-filters">
 
-<script src="{% static 'js/script.js' %}"></script>
+                <button
+                    class="filter-btn active"
+                    data-risk="all"
+                >
+                    All
+                </button>
 
+                <button
+                    class="filter-btn"
+                    data-risk="low"
+                >
+                    Low
+                </button>
+
+                <button
+                    class="filter-btn"
+                    data-risk="moderate"
+                >
+                    Moderate
+                </button>
+
+                <button
+                    class="filter-btn"
+                    data-risk="high"
+                >
+                    High
+                </button>
+
+                <button
+                    class="filter-btn"
+                    data-risk="very-high"
+                >
+                    Very High
+                </button>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <!-- IMPORTANT -->
+    <script src="js/script.js"></script>
 
 </body>
-
 </html>
