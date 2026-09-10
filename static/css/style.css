@@ -1,0 +1,1522 @@
+/* =========================================
+   LANDSLIDE RISK MONITORING SYSTEM
+   COMPLETE UI STYLESHEET
+========================================= */
+
+
+/* =========================================
+   1. RESET & GLOBAL
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --dark: #071321;
+    --dark-2: #0b1929;
+    --dark-3: #122236;
+
+    --white: #ffffff;
+    --light: #f4f6f8;
+    --gray: #8b95a1;
+    --text: #202936;
+
+    --teal: #0b9b8f;
+    --teal-dark: #08786f;
+
+    --green: #23a455;
+    --yellow: #d7b900;
+    --orange: #ff8a00;
+    --red: #f04438;
+
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Inter", Arial, sans-serif;
+    background: #dfe3e8;
+    color: var(--text);
+}
+
+
+/* =========================================
+   2. APP CONTAINER
+========================================= */
+
+.app-shell {
+    width: 100%;
+    max-width: 430px;
+    min-height: 100vh;
+
+    margin: auto;
+
+    background: var(--dark);
+    position: relative;
+
+    overflow-x: hidden;
+}
+
+.screen {
+    display: none;
+
+    min-height: 100vh;
+
+    padding-bottom: 90px;
+}
+
+.screen.active {
+    display: block;
+}
+
+
+/* =========================================
+   3. DARK BACKGROUND SCREENS
+========================================= */
+
+.dark-screen {
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(20, 54, 79, 0.5),
+            transparent 35%
+        ),
+        linear-gradient(
+            180deg,
+            #071321 0%,
+            #091725 100%
+        );
+
+    color: white;
+}
+
+
+/* =========================================
+   4. TOP BAR
+========================================= */
+
+.topbar {
+    height: 70px;
+
+    padding: 20px 20px 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.topbar h1,
+.topbar h2 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.topbar-center {
+    flex: 1;
+    text-align: center;
+}
+
+.icon-btn {
+    width: 42px;
+    height: 42px;
+
+    border: none;
+    background: transparent;
+
+    color: inherit;
+
+    font-size: 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    border-radius: 12px;
+
+    transition: 0.2s;
+}
+
+.icon-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+
+/* =========================================
+   5. HOME HERO
+========================================= */
+
+.hero {
+    padding: 15px 25px 20px;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 25px;
+    line-height: 1.35;
+
+    font-weight: 700;
+
+    margin-bottom: 10px;
+}
+
+.hero p {
+    color: #b9c1cb;
+    font-size: 14px;
+}
+
+
+/* =========================================
+   6. LOCATION SEARCH
+========================================= */
+
+.location-search {
+    margin: 5px 25px 18px;
+
+    height: 52px;
+
+    background: #ffffff;
+
+    border-radius: 28px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 18px;
+
+    color: #26313d;
+
+    gap: 12px;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.location-search input {
+    border: none;
+    outline: none;
+
+    flex: 1;
+
+    font-size: 14px;
+
+    background: transparent;
+
+    color: #26313d;
+}
+
+
+/* =========================================
+   7. MAIN RISK CARD
+========================================= */
+
+.risk-card {
+    margin: 0 25px;
+
+    padding: 25px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #17283b,
+            #101e30
+        );
+
+    min-height: 185px;
+
+    position: relative;
+
+    box-shadow:
+        inset 0 1px rgba(255,255,255,0.04),
+        0 10px 30px rgba(0,0,0,0.25);
+}
+
+.risk-card-title {
+    color: #dce2e9;
+    font-size: 15px;
+}
+
+.risk-score {
+    font-size: 54px;
+
+    font-weight: 700;
+
+    color: var(--red);
+
+    margin-top: 12px;
+
+    line-height: 1;
+}
+
+.risk-score span {
+    font-size: 28px;
+}
+
+.risk-level {
+    margin-top: 8px;
+
+    color: #f36b55;
+
+    font-size: 18px;
+
+    font-weight: 600;
+}
+
+.updated-time {
+    position: absolute;
+
+    bottom: 18px;
+    left: 25px;
+
+    color: #a9b1bb;
+
+    font-size: 11px;
+}
+
+
+/* =========================================
+   8. GAUGE
+========================================= */
+
+.gauge {
+    width: 125px;
+    height: 65px;
+
+    position: absolute;
+
+    right: 20px;
+    top: 30px;
+
+    border-radius: 125px 125px 0 0;
+
+    border: 12px solid transparent;
+
+    border-top-color: #ff7a22;
+    border-right-color: #ff3d2e;
+
+    transform: rotate(-35deg);
+}
+
+.gauge::after {
+    content: "";
+
+    width: 95px;
+    height: 45px;
+
+    position: absolute;
+
+    top: 4px;
+    left: 4px;
+
+    background: #132236;
+
+    border-radius: 100px 100px 0 0;
+}
+
+
+/* =========================================
+   9. SECTION TITLE
+========================================= */
+
+.section-title {
+    margin: 22px 25px 14px;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    color: inherit;
+}
+
+
+/* =========================================
+   10. RISK OVERVIEW
+========================================= */
+
+.risk-overview {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 10px;
+
+    padding: 0 25px;
+}
+
+.risk-box {
+    height: 78px;
+
+    border-radius: 10px;
+
+    padding: 16px 8px;
+
+    text-align: center;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    color: white;
+}
+
+.risk-box h4 {
+    font-size: 12px;
+    font-weight: 500;
+
+    margin-bottom: 7px;
+}
+
+.risk-box span {
+    font-size: 10px;
+    opacity: 0.8;
+}
+
+.low {
+    background: linear-gradient(135deg, #0c6d68, #075953);
+}
+
+.moderate {
+    background: linear-gradient(135deg, #55a900, #378100);
+}
+
+.high {
+    background: linear-gradient(135deg, #ff9f00, #e57700);
+}
+
+.very-high {
+    background: linear-gradient(135deg, #f24835, #b91f25);
+}
+
+
+/* =========================================
+   11. QUICK ACTIONS
+========================================= */
+
+.quick-actions {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    padding: 0 25px;
+
+    gap: 12px;
+}
+
+.action-item {
+    text-align: center;
+
+    color: white;
+
+    font-size: 11px;
+}
+
+.action-icon {
+    width: 52px;
+    height: 52px;
+
+    margin: auto auto 8px;
+
+    border-radius: 12px;
+
+    background: #132236;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 22px;
+
+    transition: 0.2s;
+}
+
+.action-icon:hover {
+    background: var(--teal);
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   12. BOTTOM NAVIGATION
+========================================= */
+
+.bottom-nav {
+    position: fixed;
+
+    bottom: 0;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 100%;
+    max-width: 430px;
+
+    height: 75px;
+
+    background: rgba(8, 19, 32, 0.98);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-around;
+
+    z-index: 1000;
+
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.nav-item {
+    border: none;
+    background: transparent;
+
+    color: #d0d6dc;
+
+    min-width: 55px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 5px;
+
+    font-size: 10px;
+
+    cursor: pointer;
+}
+
+.nav-item i,
+.nav-item .nav-icon {
+    font-size: 20px;
+}
+
+.nav-item.active {
+    color: var(--teal);
+}
+
+.nav-main {
+    width: 58px;
+    height: 58px;
+
+    margin-top: -30px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff6344,
+            #e9302b
+        );
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 24px;
+
+    box-shadow:
+        0 8px 25px rgba(239, 65, 48, 0.4);
+}
+
+
+/* =========================================
+   13. MAP SCREEN
+========================================= */
+
+.map-container {
+    position: relative;
+
+    width: 100%;
+
+    height: calc(100vh - 75px);
+
+    overflow: hidden;
+}
+
+
+/* REAL LEAFLET MAP */
+
+#realMap {
+    width: 100%;
+    height: 100%;
+
+    min-height: 500px;
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    z-index: 1;
+}
+
+
+/* =========================================
+   14. MAP FILTERS
+========================================= */
+
+.map-filters {
+    position: absolute;
+
+    top: 70px;
+    left: 15px;
+    right: 15px;
+
+    display: flex;
+
+    gap: 8px;
+
+    overflow-x: auto;
+
+    z-index: 500;
+
+    scrollbar-width: none;
+}
+
+.map-filters::-webkit-scrollbar {
+    display: none;
+}
+
+.filter-btn {
+    border: none;
+
+    padding: 10px 14px;
+
+    border-radius: 20px;
+
+    background: #1a293b;
+
+    color: white;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    font-size: 12px;
+}
+
+.filter-btn.active {
+    background: var(--teal);
+}
+
+
+/* =========================================
+   15. MAP BOTTOM INFO CARD
+========================================= */
+
+.map-info-card {
+    position: absolute;
+
+    bottom: 95px;
+
+    left: 12px;
+    right: 12px;
+
+    z-index: 500;
+
+    background: rgba(7, 19, 32, 0.95);
+
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+
+    color: white;
+
+    border-radius: 18px;
+
+    padding: 18px;
+
+    box-shadow: var(--shadow);
+}
+
+.map-info-title {
+    display: flex;
+    justify-content: space-between;
+
+    align-items: center;
+
+    font-size: 16px;
+
+    margin-bottom: 15px;
+}
+
+.map-risk-data {
+    display: grid;
+
+    grid-template-columns: 1.2fr repeat(3, 1fr);
+
+    gap: 10px;
+}
+
+.map-risk-score {
+    font-size: 30px;
+
+    font-weight: 700;
+
+    color: var(--red);
+}
+
+.map-data-item {
+    border-left: 1px solid rgba(255,255,255,0.1);
+
+    padding-left: 10px;
+
+    font-size: 12px;
+}
+
+.map-data-item small {
+    display: block;
+
+    color: #8d98a5;
+
+    margin-bottom: 6px;
+}
+
+
+/* =========================================
+   16. LOCATION DETAILS SCREEN
+========================================= */
+
+.location-hero {
+    height: 200px;
+
+    background-size: cover;
+    background-position: center;
+
+    position: relative;
+}
+
+.location-hero::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,0.05),
+            rgba(0,0,0,0.35)
+        );
+}
+
+.risk-badge {
+    position: absolute;
+
+    right: 18px;
+    bottom: 18px;
+
+    z-index: 2;
+
+    padding: 10px 15px;
+
+    border-radius: 8px;
+
+    background: var(--red);
+
+    color: white;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+.white-card {
+    background: white;
+
+    border-radius: 18px;
+
+    margin: -15px 12px 15px;
+
+    position: relative;
+
+    z-index: 5;
+
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.location-summary {
+    padding: 20px;
+}
+
+.location-summary h2 {
+    font-size: 20px;
+
+    margin-bottom: 20px;
+}
+
+.location-risk-row {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+.big-risk-score {
+    color: var(--red);
+
+    font-size: 52px;
+
+    font-weight: 700;
+}
+
+.big-risk-score span {
+    font-size: 25px;
+}
+
+.high-risk-text {
+    color: #c7382d;
+
+    font-size: 17px;
+
+    font-weight: 600;
+
+    margin-top: 5px;
+}
+
+
+/* =========================================
+   17. ENVIRONMENTAL FACTORS
+========================================= */
+
+.details-card {
+    background: white;
+
+    margin: 0 12px 15px;
+
+    padding: 20px;
+
+    border-radius: 18px;
+
+    box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+}
+
+.details-card h3 {
+    font-size: 15px;
+
+    margin-bottom: 18px;
+}
+
+.factor-row {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 10px 0;
+
+    font-size: 13px;
+}
+
+.factor-name {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: #4d5965;
+}
+
+.factor-value {
+    font-weight: 500;
+}
+
+
+/* =========================================
+   18. PROBABILITY BAR
+========================================= */
+
+.probability-section {
+    padding-top: 5px;
+}
+
+.probability-value {
+    color: var(--red);
+
+    font-weight: 700;
+}
+
+.progress-track {
+    height: 10px;
+
+    background: #e5e7eb;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    margin-top: 15px;
+}
+
+.progress-bar {
+    height: 100%;
+
+    width: 82%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #13a34a,
+            #d6cc00,
+            #ff8500,
+            #d71920
+        );
+
+    border-radius: 10px;
+}
+
+
+/* =========================================
+   19. PHOTO ANALYSIS
+========================================= */
+
+.upload-box {
+    margin: 20px 20px;
+
+    min-height: 245px;
+
+    border: 2px dashed #cbd2da;
+
+    border-radius: 16px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    background: #fafbfc;
+
+    padding: 20px;
+}
+
+.upload-icon {
+    font-size: 45px;
+
+    color: #6c7b89;
+
+    margin-bottom: 15px;
+}
+
+.upload-box h3 {
+    font-size: 17px;
+
+    margin-bottom: 8px;
+}
+
+.upload-box p {
+    color: #6b7280;
+
+    font-size: 12px;
+
+    margin-bottom: 20px;
+}
+
+.capture-btn {
+    border: none;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--teal-dark),
+            var(--teal)
+        );
+
+    color: white;
+
+    padding: 13px 35px;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   20. RECENT ANALYSIS
+========================================= */
+
+.recent-list {
+    padding: 0 20px 20px;
+}
+
+.recent-item {
+    display: flex;
+
+    gap: 13px;
+
+    padding: 12px 0;
+
+    border-bottom: 1px solid #e6e8eb;
+}
+
+.recent-item img {
+    width: 90px;
+    height: 75px;
+
+    object-fit: cover;
+
+    border-radius: 10px;
+}
+
+.recent-info {
+    flex: 1;
+}
+
+.recent-info h4 {
+    font-size: 14px;
+
+    margin-bottom: 7px;
+}
+
+.recent-info p {
+    font-size: 12px;
+
+    color: #727b85;
+
+    margin-bottom: 5px;
+}
+
+.risk-text-high {
+    color: var(--red);
+}
+
+.risk-text-moderate {
+    color: #d88900;
+}
+
+.risk-text-low {
+    color: var(--green);
+}
+
+
+/* =========================================
+   21. ANALYSIS RESULT
+========================================= */
+
+.analysis-image {
+    height: 240px;
+
+    position: relative;
+
+    background-size: cover;
+    background-position: center;
+
+    overflow: hidden;
+}
+
+.analysis-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.detection-box {
+    position: absolute;
+
+    border: 3px dashed var(--red);
+
+    border-radius: 5px;
+}
+
+.analysis-badge {
+    position: absolute;
+
+    right: 15px;
+    bottom: 15px;
+
+    background: var(--red);
+
+    color: white;
+
+    padding: 10px 14px;
+
+    border-radius: 8px;
+
+    font-size: 12px;
+}
+
+
+/* =========================================
+   22. INSTABILITY CARD
+========================================= */
+
+.instability-card {
+    background: white;
+
+    margin: -15px 12px 15px;
+
+    position: relative;
+
+    z-index: 2;
+
+    border-radius: 18px;
+
+    padding: 20px;
+
+    box-shadow: var(--shadow);
+}
+
+.instability-card h3 {
+    font-size: 15px;
+
+    margin-bottom: 15px;
+}
+
+.instability-score {
+    color: var(--orange);
+
+    font-size: 48px;
+
+    font-weight: 700;
+}
+
+.instability-level {
+    color: #d44c36;
+
+    font-size: 17px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================
+   23. DETECTED INDICATORS
+========================================= */
+
+.indicator-list {
+    list-style: none;
+}
+
+.indicator-list li {
+    padding: 14px 0;
+
+    border-bottom: 1px solid #edf0f2;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    font-size: 14px;
+}
+
+.warning-icon {
+    color: var(--red);
+}
+
+
+/* =========================================
+   24. AI NOTE
+========================================= */
+
+.ai-note {
+    margin: 15px 12px;
+
+    padding: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e7f5f3,
+            #d9f0ed
+        );
+
+    border-radius: 14px;
+
+    color: #3d5155;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+.ai-note h4 {
+    margin-bottom: 8px;
+}
+
+
+/* =========================================
+   25. ALERTS
+========================================= */
+
+.alert-tabs {
+    display: flex;
+
+    gap: 8px;
+
+    padding: 10px 15px 15px;
+
+    overflow-x: auto;
+}
+
+.alert-tab {
+    border: none;
+
+    padding: 10px 16px;
+
+    border-radius: 20px;
+
+    background: #172435;
+
+    color: white;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    font-size: 12px;
+}
+
+.alert-tab.active {
+    background: var(--teal);
+}
+
+.alert-container {
+    background: white;
+
+    border-radius: 20px 20px 0 0;
+
+    min-height: 600px;
+
+    color: var(--text);
+}
+
+.alert-item {
+    display: flex;
+
+    gap: 15px;
+
+    padding: 20px;
+
+    border-bottom: 1px solid #e6e9ed;
+}
+
+.alert-symbol {
+    width: 35px;
+    height: 35px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+
+    flex-shrink: 0;
+}
+
+.alert-danger {
+    background: var(--red);
+}
+
+.alert-warning {
+    background: var(--orange);
+}
+
+.alert-info {
+    background: var(--teal);
+}
+
+.alert-content h3 {
+    font-size: 15px;
+
+    margin-bottom: 7px;
+}
+
+.alert-content p {
+    font-size: 13px;
+
+    line-height: 1.5;
+
+    color: #5c6670;
+}
+
+.alert-time {
+    display: block;
+
+    margin-top: 8px;
+
+    font-size: 11px;
+
+    color: #89929b;
+}
+
+
+/* =========================================
+   26. PROFILE
+========================================= */
+
+.profile-header {
+    padding: 30px 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    color: white;
+}
+
+.profile-avatar {
+    width: 60px;
+    height: 60px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eef1f4,
+            #aab5c0
+        );
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 30px;
+
+    color: #697783;
+}
+
+.profile-info h2 {
+    font-size: 17px;
+
+    margin-bottom: 6px;
+}
+
+.profile-info p {
+    font-size: 12px;
+
+    color: #b6bec7;
+}
+
+.profile-menu {
+    background: white;
+
+    color: var(--text);
+
+    border-radius: 20px 20px 0 0;
+
+    min-height: 500px;
+}
+
+.profile-menu-item {
+    padding: 20px;
+
+    border-bottom: 1px solid #edf0f2;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    cursor: pointer;
+}
+
+.profile-menu-left {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   27. LEAFLET MAP STYLING
+========================================= */
+
+.leaflet-container {
+    font-family: "Inter", Arial, sans-serif;
+}
+
+.leaflet-control-zoom {
+    border: none !important;
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.2) !important;
+}
+
+.leaflet-control-zoom a {
+    width: 42px !important;
+    height: 42px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    background: white !important;
+
+    color: #1b2635 !important;
+
+    border: none !important;
+
+    font-size: 20px !important;
+}
+
+.leaflet-control-zoom-in {
+    border-radius: 12px 12px 0 0 !important;
+}
+
+.leaflet-control-zoom-out {
+    border-radius: 0 0 12px 12px !important;
+}
+
+.leaflet-popup-content-wrapper {
+    border-radius: 14px !important;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.2) !important;
+}
+
+.leaflet-popup-content {
+    margin: 15px 18px !important;
+
+    font-size: 13px;
+}
+
+.leaflet-popup-tip {
+    background: white !important;
+}
+
+
+/* =========================================
+   28. CUSTOM RISK MARKERS
+========================================= */
+
+.risk-marker {
+    width: 18px;
+    height: 18px;
+
+    border-radius: 50%;
+
+    border: 3px solid white;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,0.4);
+}
+
+.risk-low {
+    background: #16a34a;
+}
+
+.risk-moderate {
+    background: #eab308;
+}
+
+.risk-high {
+    background: #f97316;
+}
+
+.risk-very-high {
+    background: #dc2626;
+}
+
+
+/* =========================================
+   29. SCROLLBAR
+========================================= */
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #718096;
+
+    border-radius: 10px;
+}
+
+
+/* =========================================
+   30. TABLET / DESKTOP
+========================================= */
+
+@media (min-width: 431px) {
+
+    body {
+        background:
+            linear-gradient(
+                135deg,
+                #d8dde3,
+                #eef1f4
+            );
+    }
+
+    .app-shell {
+        box-shadow:
+            0 0 40px rgba(0,0,0,0.2);
+    }
+}
+
+
+/* =========================================
+   31. SMALL MOBILE SCREENS
+========================================= */
+
+@media (max-width: 360px) {
+
+    .hero h1 {
+        font-size: 21px;
+    }
+
+    .risk-overview {
+        gap: 6px;
+        padding: 0 15px;
+    }
+
+    .risk-box {
+        padding: 10px 4px;
+    }
+
+    .quick-actions {
+        padding: 0 15px;
+        gap: 8px;
+    }
+
+    .location-search {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+    .risk-card {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+}
