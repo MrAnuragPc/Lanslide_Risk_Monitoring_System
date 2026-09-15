@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply font-body text-navy-900 bg-slate-100 antialiased;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+ 
+/* Leaflet container sizing */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #cfe8d8;
+}
+
+.leaflet-control-attribution {
+  font-size: 9px !important;
+}
+
+.risk-pulse {
+  animation: risk-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes risk-pulse {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50% { opacity: 0.15; transform: scale(1.6); }
+}
+
+/* Score labels drawn directly on high-risk map zones — plain bold text
+   instead of Leaflet's default white tooltip box, so it reads as a data
+   label painted on the map rather than a UI tooltip. */
+.leaflet-tooltip.risk-score-tooltip {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  color: #fff;
+  font-family: 'Sora', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 11.5px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9), 0 0 2px rgba(0, 0, 0, 0.8);
+  pointer-events: none;
+}
+.leaflet-tooltip.risk-score-tooltip::before {
+  display: none;
+}
+
+/* Live-status pulse dot used outside the map (status bar) */
+.live-dot {
+  animation: live-dot-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes live-dot-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
